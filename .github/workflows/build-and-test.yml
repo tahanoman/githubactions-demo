@@ -25,7 +25,17 @@ jobs:
 
     - name: Run Build
       run: |
-        python setup.py build
+        python setup.py build --build-base build/
+
+    - name: Debug Build Output
+      run: |
+        echo "Listing all files after build:"
+        ls -R
+
+    - name: Verify Build Directory
+      run: |
+        echo "Checking build directory..."
+        ls -al build/ || echo "No build directory found!"
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v4
